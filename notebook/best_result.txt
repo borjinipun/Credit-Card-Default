@@ -1,0 +1,19 @@
+
+🏆 Best Model: RandomForest
+
+Test Performance:
+Accuracy: 0.8163333333333334
+Precision: 0.6600284495021337
+Recall: 0.3496608892238131
+F1 Score: 0.45714285714285713
+ROC-AUC: 0.7747801145963336
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.95      0.89      4673
+           1       0.66      0.35      0.46      1327
+
+    accuracy                           0.82      6000
+   macro avg       0.75      0.65      0.67      6000
+weighted avg       0.80      0.82      0.79      6000
