@@ -5,13 +5,18 @@ import joblib
 
 class CreditDefaultModel:
     def __init__(self, model_path="models/best_model.pkl"):
-        self.model = joblib.load(model_path)
-        self.explainer = shap.Explainer(self.model)
+        self.pipeline = joblib.load(model_path)
+
+        # Use prediction function wrapper
+        self.explainer = shap.Explainer(
+            self.pipeline.predict_proba,
+            shap.maskers.Independent
+        )
 
     def predict(self, data: dict):
         df = pd.DataFrame([data])
-        prediction = self.model.predict(df)[0]
-        probability = self.model.predict_proba(df)[0][1]
+        prediction = self.pipeline.predict(df)[0]
+        probability = self.pipeline.predict_proba(df)[0][1]
 
         return {
             "prediction": int(prediction),
@@ -20,8 +25,11 @@ class CreditDefaultModel:
 
     def explain(self, data: dict):
         df = pd.DataFrame([data])
+
         shap_values = self.explainer(df)
 
-        explanation = dict(zip(df.columns, shap_values.values[0]))
+        explanation = dict(
+            zip(df.columns, shap_values.values[0])
+        )
 
         return explanation

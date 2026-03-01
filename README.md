@@ -1,8 +1,3 @@
-Here is a **production-ready README.md** for your project.
-You can copy this directly into your repository root as `README.md`.
-
----
-
 # 💳 Credit Default Prediction System
 
 Production-grade machine learning system for predicting credit card default risk using classical ML + MLOps best practices.
